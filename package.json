@@ -11,12 +11,15 @@
   "dependencies": {
     "@headlessui/react": "^2.2.1",
     "@heroicons/react": "^2.2.0",
+    "@xstate/react": "^5.0.3",
     "headlessui": "^0.0.0",
     "heroicons": "^2.2.0",
     "next": "15.3.0",
+    "openai": "^4.93.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-starfield": "^1.0.3"
+    "react-starfield": "^1.0.3",
+    "xstate": "^5.19.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

@@ -1,0 +1,12 @@
+{
+  "prompt_type": "", // Follow up options: yes_no, final_list, multi_select
+  "question": "", // This is the question the AI is asking the user
+  "options": [], // Options the user can select, 2 max for yes/no, up to 6 for multi_select
+  "recommendations": [ // Only populated when prompt_type is final_list (meaning it's done asking follow up), these are the final results
+    {
+      "title": "", 
+      "description": "",
+      "location": "" 
+    }
+  ]
+}
