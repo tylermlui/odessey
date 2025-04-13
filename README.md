@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## 🚀 Inspiration
 
-First, run the development server:
+We wanted to make trip planning feel more like talking to a friend than filling out a form. Too many travel tools feel rigid or overwhelming—we envisioned something that understands your vibe and curates experiences just for you.
+## 💡 What it does
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Odyssey is an AI-powered trip planner that chats with you to figure out your mood, preferences, and intentions. Through a conversational interface, it suggests 2–4 curated activities or places tailored to your vibe—whether you're planning a full vacation or just looking for something fun to do today.
+## 🔧 How we built it
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+We used a state machine with XState to manage conversation flow and transitions. The frontend is built with React and Tailwind CSS for clean UX. On the backend, we use OpenAI's GPT-4o with a fine-tuned model that outputs structured JSON responses, making it easy to parse and present options in the UI.
+## 🧗 Challenges we ran into
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+    Ensuring GPT responses were always valid JSON.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+    Balancing flexibility in conversation while still guiding users toward actionable suggestions.
 
-## Learn More
+    Mapping state transitions cleanly without breaking the conversational context.
 
-To learn more about Next.js, take a look at the following resources:
+## 🏆 Accomplishments that we're proud of
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    Built an intuitive, chat-first planning experience in a short timeframe.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    Designed a flexible prompt-response protocol that always returns structured JSON.
 
-## Deploy on Vercel
+    Successfully fine-tuned GPT to behave like a friendly, helpful trip guide.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📚 What we learned
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    How to guide LLM output toward specific formats using prompt engineering.
+
+    How to leverage state machines to manage complex conversational flows.
+
+    The power of combining user intent with curated suggestions to enhance decision-making.
+
+## 🔮 What's next for Odyssey
+
+    Expanding our recommendation engine with real-time data (events, reviews, open hours).
+
+    Adding location services to auto-suggest nearby options.
+
+    Saving and sharing itineraries with friends.
+
+    Supporting group planning through collaborative chats.
