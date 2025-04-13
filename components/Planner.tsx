@@ -2,12 +2,12 @@
 
 import { useMachine } from '@xstate/react';
 import { itineraryMachine } from '@/machines/itineraryMachine';
-
+import { useState } from 'react'
 export default function Planner() {
   const [state, send] = useMachine(itineraryMachine);
-
-  const suggestions = state.context.llmSuggestions;
-
+  console.log(state.context.llmSuggestions)  
+  console.log("jsonparse",JSON.parse(JSON.stringify(state.context.llmSuggestions)))
+  const suggestions = JSON.parse(JSON.stringify(state.context.llmSuggestions));
   return (
     <div className="text-white p-8">
       <h2 className="text-2xl font-bold mb-4">Your Itinerary</h2>
@@ -24,7 +24,7 @@ export default function Planner() {
       {state.matches('awaiting_choice') && (
         <div className="space-y-4">
           <p className="text-gray-400">Choose your next step:</p>
-          <p> {suggestions}</p>
+          <p> {suggestions} </p>
           {/* {suggestions.map((s: string, i: number) => (
             <button
               key={i}
