@@ -3,9 +3,8 @@ import { createMachine, assign, fromPromise } from 'xstate';
 interface Context {
   history: string[];
   lastChoice: string;
-  llmSuggestions: string[];
+  llmSuggestions: any[]; // changed to any[] since you're storing structured messages
 }
-
 
 export const itineraryMachine = createMachine({
   id: 'itinerary',
@@ -18,7 +17,13 @@ export const itineraryMachine = createMachine({
   states: {
     start: {
       on: {
-        BEGIN: 'suggesting'
+        BEGIN: {
+          target: 'suggesting',
+          actions: assign({
+            lastChoice: ({ event }) => event.value.lastChoice,
+            history: ({ event }) => event.value.history
+          })
+        }
       }
     },
     suggesting: {
@@ -29,11 +34,10 @@ export const itineraryMachine = createMachine({
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               history: input.history,
-              lastChoice: "Give me two suggestions"
+              lastChoice: input.lastChoice
             })
           });
           const data = await res.json();
-          console.log(JSON.stringify(data, null, 2));
           return data;
         }),
         input: ({ context }) => ({
@@ -54,11 +58,15 @@ export const itineraryMachine = createMachine({
         SELECT_OPTION: {
           target: 'suggesting',
           actions: assign({
-            lastChoice: ({ event }) => event.value,
-            history: ({ context, event }) => [...context.history, event.value]
+            lastChoice: ({ event }) => event.value.lastChoice,
+            history: ({ event }) => event.value.history
           })
-        }
+        },
+        FINISH: 'done'
       }
+    },
+    done: {
+      type: 'final'
     },
     error: {
       type: 'final'
